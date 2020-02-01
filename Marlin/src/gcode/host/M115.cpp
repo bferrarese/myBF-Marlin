@@ -30,6 +30,12 @@
     SERIAL_CHAR(':');
     SERIAL_ECHOLN(int(ena ? 1 : 0));
   }
+ static void cap_line_val(PGM_P const name, float val) {
+    SERIAL_ECHOPGM("Cap:");
+    serialprintPGM(name);
+    SERIAL_CHAR(':');
+    SERIAL_ECHOLN(val);
+  }
 #endif
 
 /**
@@ -171,6 +177,35 @@ void GcodeSuite::M115() {
       #endif
     );
 
+    // Minimum BED X position
+    cap_line_val(PSTR("X_MIN_BED"),X_MIN_BED);
+    
+    // Maximum BED X position
+    cap_line_val(PSTR("X_MAX_BED"),X_MAX_BED);
+    
+    // Minimum BED Y position
+    cap_line_val(PSTR("Y_MIN_BED"),Y_MIN_BED);
+    
+    // Maximum BED Y position
+    cap_line_val(PSTR("Y_MAX_BED"),Y_MAX_BED);
+    
+    // Minimum X axis position
+    cap_line_val(PSTR("X_MIN_POS"),X_MIN_POS);
+    
+    // Maximum X axis position
+    cap_line_val(PSTR("X_MAX_POS"),X_MAX_POS);
+    
+    // Minimum Y axis position
+    cap_line_val(PSTR("Y_MIN_POS"),Y_MIN_POS);
+    
+    // Maximum Y axis position
+    cap_line_val(PSTR("Y_MAX_POS"),Y_MAX_POS);
+    
+    // Minimum Z axis position
+    cap_line_val(PSTR("Y_MIN_POS"),Y_MIN_POS);
+    
+    // Maximum X axis position
+    cap_line_val(PSTR("Y_MAX_POS"),Y_MAX_POS);
 
   #endif // EXTENDED_CAPABILITIES_REPORT
 }

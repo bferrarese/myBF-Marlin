@@ -520,7 +520,6 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
       case 92: M92(); break;                                      // M92: Set the steps-per-unit for one or more axes
       case 114: M114(); break;                                    // M114: Report current position
       case 115: M115(); break;                                    // M115: Report capabilities
-      case 116: M116(); break;                                    // M116: Report Machine/bed size and x,y,& z position limits
       case 117: M117(); break;                                    // M117: Set LCD message text, if possible
       case 118: M118(); break;                                    // M118: Display a message in the host console
       case 119: M119(); break;                                    // M119: Report endstop states
