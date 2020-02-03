@@ -19,14 +19,31 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+#pragma once
+
+/**
+ * feature/spindle_laser_types.h
+ * Support for Laser Power or Spindle Power & Direction
+ */
 
 #include "../inc/MarlinConfigPre.h"
 
-#if ENABLED(BARICUDA)
+#if ENABLED(SPINDLE_FEATURE)
+  #define _MSG_CUTTER(M) MSG_SPINDLE_##M
+#else
+  #define _MSG_CUTTER(M) MSG_LASER_##M
+#endif
+#define MSG_CUTTER(M) _MSG_CUTTER(M)
 
-#include "baricuda.h"
-
-uint8_t baricuda_valve_pressure = 0,
-        baricuda_e_to_p_pressure = 0;
-
-#endif // BARICUDA
+#if DISABLED(CUTTER_POWER_PROPORTIONAL)
+  #if SPEED_POWER_MAX > 255
+    #define cutter_power_t   uint16_t
+    #define CUTTER_MENU_TYPE uint16_5
+  #else
+    #define cutter_power_t   uint8_t
+    #define CUTTER_MENU_TYPE uint8
+  #endif
+#else
+  #define cutter_power_t   float
+  #define CUTTER_MENU_TYPE float52
+#endif
