@@ -458,11 +458,11 @@ void MarlinUI::clear_lcd() { lcd.clear(); }
     //
     // Show the Marlin logo with splash line 1
     //
-    if (LCD_EXTRA_SPACE >= utf8_strlen(SHORT_BUILD_VERSION) + 1) {
+    if (LCD_EXTRA_SPACE >= utf8_strlen(SHORT_myBUILD_VERSION) + 1) {
       //
       // Show the Marlin logo, splash line1, and splash line 2
       //
-      logo_lines(PSTR(" " SHORT_BUILD_VERSION));
+      logo_lines(PSTR(" " SHORT_myBUILD_VERSION));
       CENTER_OR_SCROLL(MARLIN_WEBSITE_URL, 2000);
     }
     else {
@@ -472,7 +472,7 @@ void MarlinUI::clear_lcd() { lcd.clear(); }
       //
       extern const char NUL_STR[];
       logo_lines(NUL_STR);
-      CENTER_OR_SCROLL(SHORT_BUILD_VERSION, 1500);
+      CENTER_OR_SCROLL(SHORT_myBUILD_VERSION, 1500);
       CENTER_OR_SCROLL(MARLIN_WEBSITE_URL, 1500);
       #ifdef STRING_SPLASH_LINE3
         CENTER_OR_SCROLL(STRING_SPLASH_LINE3, 1500);

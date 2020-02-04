@@ -308,7 +308,7 @@ const struct VPMapping VPMap[] PROGMEM = {
   { 0 , nullptr } // List is terminated with an nullptr as table entry.
 };
 
-const char MarlinVersion[] PROGMEM = SHORT_BUILD_VERSION;
+const char MarlinVersion[] PROGMEM = SHORT_myBUILD_VERSION;
 
 // Helper to define a DGUS_VP_Variable for common use cases.
 #define VPHELPER(VPADR, VPADRVAR, RXFPTR, TXFPTR ) { .VP=VPADR, .memadr=VPADRVAR, .size=sizeof(VPADRVAR), \

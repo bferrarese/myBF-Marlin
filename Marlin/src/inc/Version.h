@@ -27,13 +27,14 @@
 #ifndef SHORT_BUILD_VERSION
   #define SHORT_BUILD_VERSION "2.0.3"
 #endif
+  #define SHORT_myBUILD_VERSION "myBF-" SHORT_BUILD_VERSION
 
 /**
  * Verbose version identifier containing a unique identifier, such as the
  * vendor name, download location, GitHub account, etc.
  */
 #ifndef DETAILED_BUILD_VERSION
-  #define DETAILED_BUILD_VERSION SHORT_BUILD_VERSION " (GitHub)"
+  #define DETAILED_BUILD_VERSION SHORT_myBUILD_VERSION " (Wooditude)"
 #endif
 
 /**
@@ -73,7 +74,7 @@
  * Define a generic printer name to be output to the LCD after booting Marlin.
  */
 #ifndef MACHINE_NAME
-  #define MACHINE_NAME "3D Printer"
+  #define MACHINE_NAME "WoodiLaser"
 #endif
 
 /**
@@ -82,7 +83,7 @@
  * providing the source code to your customers.)
  */
 #ifndef SOURCE_CODE_URL
-  #define SOURCE_CODE_URL "https://github.com/MarlinFirmware/Marlin"
+  #define SOURCE_CODE_URL "https://github.com/bferrarese/myBF-Marlin"
 #endif
 
 /**
@@ -97,7 +98,7 @@
    * documentation about a specific Marlin release. Displayed in the Info Menu.
    */
 #ifndef WEBSITE_URL
-  #define WEBSITE_URL "http://marlinfw.org"
+  #define WEBSITE_URL "www.wooditude.com"
 #endif
 
 /**
