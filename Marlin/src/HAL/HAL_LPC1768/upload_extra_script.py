@@ -9,7 +9,7 @@ target_filename = "FIRMWARE.CUR"
 target_drive = "REARM"
 
 import os
-import getpass
+# import getpass
 import platform
 
 current_OS = platform.system()
@@ -20,6 +20,16 @@ def print_error(e):
           'Please select it in platformio.ini using the upload_port keyword ' \
           '(https://docs.platformio.org/en/latest/projectconf/section_env_upload.html) ' \
           'or copy the firmware (.pio/build/' + env.get('PIOENV') + '/firmware.bin) manually to the appropriate disk\n')
+
+def after_upload(source, target, env):
+    mntpoint = env['UPLOAD_PORT'][:-1]
+    try:
+        os.system('/usr/bin/umount ' + mntpoint)
+        print("unmounting: " + mntpoint)
+    except Exception as e:
+        print_error(str(e))
+
+env.AddPostAction("upload", after_upload)
 
 try:
     if current_OS == 'Windows':
@@ -79,19 +89,19 @@ try:
         upload_disk = 'Disk not found'
         target_file_found = False
         target_drive_found = False
-        drives = os.listdir(os.path.join(os.sep, 'media', getpass.getuser()))
+        drives = os.listdir(os.path.join(os.sep, 'media'))
         if target_drive in drives:  # If target drive is found, use it.
             target_drive_found = True
-            upload_disk = os.path.join(os.sep, 'media', getpass.getuser(), target_drive) + os.sep
+            upload_disk = os.path.join(os.sep, 'media', target_drive) + os.sep
         else:
             for drive in drives:
                 try:
-                    files = os.listdir(os.path.join(os.sep, 'media', getpass.getuser(), drive))
+                    files = os.listdir(os.path.join(os.sep, 'media', drive))
                 except:
                     continue
                 else:
                     if target_filename in files:
-                        upload_disk = os.path.join(os.sep, 'media', getpass.getuser(), drive) + os.sep
+                        upload_disk = os.path.join(os.sep, 'media', drive) + os.sep
                         target_file_found = True
                         break
         #
@@ -103,7 +113,7 @@ try:
                 UPLOAD_FLAGS="-P$UPLOAD_PORT",
                 UPLOAD_PORT=upload_disk
             )
-            print('upload disk: ', upload_disk)
+            print('upload disk: ', upload_disk[:-1])
         else:
             print_error('Autodetect Error')
 
